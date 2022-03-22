@@ -7,10 +7,7 @@ from statistics import mean
 login_id = {}
 
 # Student List
-std_dic = {"Rahul":[],
-        "Sahil":[], 
-        "Shivali":[], 
-        "Ram":[]}
+std_dic = {}
 
 
 # Home + Function Input
