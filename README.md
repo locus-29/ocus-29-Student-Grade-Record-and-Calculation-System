@@ -11,7 +11,7 @@ std_dic = {}
 
 
 # Home + Function Input
-def home():
+def home(): 
     print('''=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
     \nWelcome to Grade Central
 
@@ -28,42 +28,43 @@ def home():
     choose = input("Choose Number to Continue :  ")
     print("=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=++=+=+=+=+=+=+=+=+=+=+=+=+")
 
-    if choose == "1":
+
+    if choose == "1":              #1
         gradelist()
         for each_student in std_dic:
             grade_list = std_dic[each_student] 
             print("-----------------------------------------------------------------")
             print(each_student ,":- ", grade_list, "\n")
-    elif choose == "2":
+    elif choose == "2":            #2
         rgrade()
         for each_student in std_dic:
             grade_list = std_dic[each_student] 
             print("-----------------------------------------------------------------")
             print(each_student ,":- ", grade_list, "\n")
-    elif choose == "3":
+    elif choose == "3":            #3
         rstd()
         for each_student in std_dic:
             grade_list = std_dic[each_student] 
             print("-----------------------------------------------------------------")
             print(each_student ,":- ", grade_list, "\n")
-    elif choose == "4":
+    elif choose == "4":            #4
         astd()
         for each_student in std_dic:
             grade_list = std_dic[each_student] 
             print("-----------------------------------------------------------------")
             print(each_student ,":- ", grade_list, "\n")
-    elif choose == "5":
+    elif choose == "5":            #5
         avgstd()
-    elif choose == "6":
+    elif choose == "6":            #6
         addstd()
-    elif choose == "7":
+    elif choose == "7":            #7
         for each_student in std_dic:
             grade_list = std_dic[each_student] 
             print("----------------------------------------------------------------")
             print(each_student ,":- ", grade_list, "\n")
-    elif choose == "8":
+    elif choose == "8":            #8
         exit()
-    else:
+    else:                          #9
         print("----------------------------------------------------------------")
         print("Error: Invalid Input")
 
@@ -71,81 +72,78 @@ def home():
 # Enter Grade System
 def gradelist():
     try:
+        name = input("\nEnter Name:-  ")
+        print("")
+        if name == "000":
+            home()
+
+        n = int(input("How many subject grades you want to add:- "))
+
+        if n == "000":
+            home()
+        print("")
+
+        for i in range(n):
+            grade = int(input("Enter Grades:-  "))
+
+            if grade == "000":
+                break
+
+        
+            if name in std_dic:
+                print("Adding ",name ,"Grade ....\n")
+                std_dic[name].append(int(grade))
+            else:
+                print("----------------------------------------------------------------")
+                print("Error: Invalid Name (name is not present in the saved list)")
+                break
+    except:
+        print("Error: Can't be processed try again")
+        gradelist()
+
+# Remove Grade System
+def rgrade():
+    try:
         name = input("Enter Name:-  ")
         print("")
         if name == "000":
             home()
-        n = int(input("How many subject grades you want to add:- "))
-        if n == "000":
-            home()
+
+        nm = int(input("How many Grades you want to remove:- "))
         print("")
+        if nm == "000":
+            home()
+        for i in range(nm):
 
-        for i in range(n):
-            grade = input("Enter Grades:-  ")
-
-            if name == "000":
+            grade = int(input("\nEnter Grades:-  ")) 
+            if grade == "000":
                 break
 
-            try:
-                if name in std_dic:
-                    print("Adding ",name ,"Grade ....\n")
-                    std_dic[name].append(int(grade))
-                else:
-                    print("----------------------------------------------------------------")
-                    print("Error: Invalid Name (name is not present in the saved list)")
-                    break
-            except:
-                print("----------------------------------------------------------------")
-                print("Error: Enter valid marks")
-    except:
-        print("Error: Can't be processed try again")
-        home()
 
-# Remove Grade System
-def rgrade():
-    name = input("Enter Name:-  ")
-    print("")
-    if name == "000":
-        home()
-    try:
-        n = int(input("How many Grades you want to remove:- "))
-        print("")
-        if n == "000":
-            home()
-        for i in range(n):
-            grade = input("\nEnter Grades:-  ") 
-
-            if name == "000":
-                break
-    except:
-        print("Error: Invalid Input")
-        rgrade()
-
-    try:
-        if name in std_dic:
-            print("Removing the ", name, " grade.....")
-            std_dic[name].remove(int(grade))
-        else:
-            print("Error: Name is not present in the saved list")
-            home()
+            if name in std_dic:
+                print("Removing the ", name, " grade.....")
+                std_dic[name].remove(int(grade))
+            else:
+                print("Error: Name is not present in the saved list")
+                rgrade()
+        
     except:
         print("----------------------------------------------------------------")
-        print("Error:  Grades cannot be removed")
-        home()
+        print("Error:  Can't be proccessed try again\n")
+        rgrade()
+
 
 # Remove student System
 def rstd():
-    try:
-        try:
-            n = int(input("How many students you want to remove:- "))
-            print("")
-            if n == "000":
-                home()
-        except:
-            print("Error: Invalid Input")
-            rstd()
 
-        for i in range(n):
+    try:
+        nt = int(input("How many students you want to remove:- "))
+        print("")
+        if nt == "000":
+            home()
+    
+
+        for i in range(nt):
             name = input("Enter Name:-  ")
             
             if name == "000":
@@ -156,28 +154,26 @@ def rstd():
 
             if name in std_dic:
                 del std_dic[name]
+                
             else:
                 print("----------------------------------------------------------------")
                 print("Error: Name is not present in the saved list")
                 print("")
     except:
-        print("Error:  Can't be proccessed try  again")
-        home()
+        print("Error: Invalid Input")
+        rstd()
+
 
 # Add student system
 def astd():
+
     try:
+        nl = int(input("How many students you want to add:- ",))
+        print("")
+        if nl == "000":
+            home()
 
-        try:
-            n = int(input("How many students you want to add:- ",))
-            print("")
-            if n == "000":
-                home()
-        except:
-            print("Error: Invalid Input")
-            astd()
-
-        for i in range(n):
+        for i in range(nl):
             name = str(input("Enter name:-  " ))
 
             if name == "000":
@@ -190,10 +186,12 @@ def astd():
             else:
                 std_dic[name] = []
                 print("")
-                print("Adding ",name, " in the list.....")
+                print("Adding ",name, " in the list.....\n")
+        
     except:
-        print("Error: Can't be proccessed try again")
-        home()
+        print("Error: Invalid Input")
+        astd()
+
 
 # Login System
 def loginsys():
@@ -227,6 +225,7 @@ def loginsys():
                 loginsys()
 
     # for creating new account 
+
     elif ques == "n" :
 
         k = input("Enter New Username:-  ")
@@ -254,9 +253,9 @@ def avgstd():
             print("----------------------------------------------------------------")
             print(each_student ,"has an Average of:- ", avgstd,"\n")
     except:
-        while True:
             print("----------------------------------------------------------------")
             print("Error: Assign marks to all students")
+
             home()
 
 
@@ -273,19 +272,6 @@ def addstd():
     except:
         print("----------------------------------------------------------------")
         print("Error: Assign marks to all students")
-
 # Output
 
 loginsys()
-
-
-
-
-    
-
-
-
-    
-
-
-
